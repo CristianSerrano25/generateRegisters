@@ -11,16 +11,19 @@ const genres = ['Acción', 'Terror', 'Anime'];
 let id = 1;
 
 // Función para generar una transacción de compra
-const generateTransaction = () => ({
-    id: id++,
-    customerName: faker.name.fullName(),
-    customerEmail: faker.internet.email(),
-    movieTitle: faker.lorem.words(3),
-    genre: faker.helpers.arrayElement(genres),
-    purchaseDate: faker.date.recent().toISOString(),
-    tickets: faker.datatype.number({ min: 1, max: 5 }),
-    totalAmount: faker.datatype.number({ min: 1, max: 5 }) * 2000,
-});
+const generateTransaction = () => {
+    const tickets = faker.number.int({ min: 1, max: 5 });
+    return {
+        id: id++,
+        customerName: faker.person.fullName(),
+        customerEmail: faker.internet.email(),
+        movieTitle: faker.lorem.words(3),
+        genre: faker.helpers.arrayElement(genres),
+        purchaseDate: faker.date.recent().toISOString(),
+        tickets: tickets,
+        totalAmount: tickets * 2000,
+    };
+};
 
 // Generar 1000 transacciones
 const transactions = Array.from({ length: 1000 }, generateTransaction);

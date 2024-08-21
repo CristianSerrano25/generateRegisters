@@ -1,27 +1,26 @@
-
 import { faker } from '@faker-js/faker';
 import { writeFileSync } from 'fs';
 import path from 'path';
 
-// Ruta al archivo JSON
+// Ruta al archivo JSON generado;
 const filePath = path.resolve('data', 'users.json');
 
-// Función para generar un usuario falso
-let userId = 1;
+let userId = 1;//Inicializa el id en 1;
 
+// Función para generar un usuario falso;
 const generateUser = () => ({
     id: userId++,
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
     email: faker.internet.email(),
     phoneNumber: faker.phone.number(),
-    street: faker.address.streetAddress(),
-    city: faker.address.city(),
-    state: faker.address.state(),
-    postalCode: faker.address.zipCode(),
-    country: faker.address.country(),
-    birthDate: faker.date.past(50, new Date()).toISOString().split('T')[0],
-    avatar: faker.image.avatar(),
+    street: faker.location.streetAddress(),
+    city: faker.location.city(),
+    state: faker.location.state(),
+    postalCode: faker.location.zipCode(),
+    country: faker.location.country(),
+    birthDate: faker.date.birthdate(50, new Date()).toISOString().split('T')[0],
+    avatar: faker.image.avatarGitHub(),
 });
 
 // Generar 1000 usuarios

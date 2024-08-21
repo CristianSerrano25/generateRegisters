@@ -8,7 +8,7 @@ const filePath = path.resolve('data', 'tickets.json');
 // Función para generar un número de asiento (e.g., A1, B2, C3)
 const generateSeatNumber = () => {
     const rows = ['A', 'B', 'C', 'D', 'E', 'F'];
-    const seat = faker.datatype.number({ min: 1, max: 10 });
+    const seat = faker.number.int({ min: 1, max: 10 });
     const row = faker.helpers.arrayElement(rows);
     return `${row}${seat}`;
 };
@@ -16,9 +16,9 @@ const generateSeatNumber = () => {
 // Función para generar un registro de boleto
 const generateTicket = (id) => ({
     TicketID: id,
-    ScreeningID: faker.datatype.number({ min: 1, max: 5 }), // Puede variar según la cantidad de funciones disponibles
+    ScreeningID: faker.number.int({ min: 1, max: 5 }), // Puede variar según la cantidad de funciones disponibles
     SeatNumber: generateSeatNumber(),
-    CustomerName: faker.name.fullName(),
+    CustomerName: faker.person.fullName(),
     PurchaseDate: faker.date.recent().toString(),
 });
 
